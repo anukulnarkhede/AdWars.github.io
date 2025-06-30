@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ad Wars: The 6-Week Intensive Challenge</title>
+<!-- Chosen Palette: Stealth Mode -->
+<!-- Application Structure Plan: The SPA is designed as a vertical, scrollable pitch deck to generate excitement and inform students. It starts with a high-impact Hero section, followed by a "Why Join?" section using benefit-driven cards. The core is a simplified, visual timeline of the 6-week challenge. A dedicated section highlights the new "Live Campaign" feature as a key selling point. It concludes with a clear breakdown of the evaluation criteria and a strong call to action. This narrative structure is designed to take students from initial interest to a clear understanding of the challenge and a desire to sign up. -->
+<!-- Visualization & Content Choices: Report Info: Program benefits -> Goal: Inform/Persuade -> Viz: Icon-driven cards (HTML/CSS/Unicode) -> Justification: Easily scannable and visually appealing way to list key benefits. Report Info: 6-Week Timeline -> Goal: Organize/Inform -> Viz: Vertical timeline diagram (HTML/CSS) -> Justification: Simplifies the dense schedule into a clear, exciting progression. Report Info: Evaluation Criteria -> Goal: Inform/Compare -> Viz: Doughnut Chart (Chart.js/Canvas) -> Justification: Quickly communicates what skills are valued in the competition. -->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+body {
+font-family: 'Inter', sans-serif;
+background-color: #020617;
+color: #e2e8f0;
+}
+.timeline-item::before {
+content: '';
+position: absolute;
+left: 1.5rem;
+top: 2.5rem;
+bottom: -2rem;
+width: 3px;
+background-color: #1e293b;
+transform: translateX(-50%);
+}
+.timeline-container > .timeline-item:last-child::before {
+display: none;
+}
+.chart-container {
+position: relative;
+margin-left: auto;
+margin-right: auto;
+height: 40vh;
+max-height: 400px;
+width: 100%;
+max-width: 400px;
+}
+.form-input, .form-select {
+background-color: #1e293b;
+border: 1px solid #334155;
+color: #e2e8f0;
+padding: 0.75rem 1rem;
+border-radius: 0.5rem;
+font-size: 1rem;
+width: 100%;
+transition: border-color 0.2s, box-shadow 0.2s;
+}
+.form-input:focus, .form-select:focus {
+outline: none;
+border-color: #2563eb;
+box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.5);
+}
+.file-input-label {
+background-color: #334155;
+color: #9ca3af;
+padding: 0.75rem 1rem;
+border-radius: 0.5rem;
+cursor: pointer;
+display: block;
+text-align: center;
+}
+.file-input-label:hover {
+background-color: #475569;
+}
+</style>
+</head>
+<body class="antialiased">
+
+<main class="container mx-auto px-4">
+
+<header class="text-center min-h-screen flex flex-col justify-center items-center py-16">
+<h1 class="text-5xl md:text-8xl font-black tracking-tighter uppercase">
+<span class="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-red-500">Ad</span>
+<span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400">Wars</span>
+</h1>
+<p class="mt-4 text-xl md:text-3xl font-bold text-slate-300">The 6-Week Intensive Challenge</p>
+<p class="mt-6 text-lg text-slate-400 max-w-2xl mx-auto">From blank canvas to brand brilliance – your 6-week branding challenge.</p>
+<a href="#signup" class="mt-10 bg-blue-600 text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-blue-500 transition-all transform hover:scale-105">Join the Battle</a>
+</header>
+
+<section id="why-join" class="py-20 md:py-24">
+<div class="text-center mb-12">
+<h2 class="text-3xl md:text-4xl font-bold text-white">Why You Should Join Ad Wars</h2>
+<p class="mt-3 text-lg text-slate-400 max-w-2xl mx-auto">Go beyond theory. Build skills that get you hired.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+<div class="bg-slate-800 p-8 rounded-xl text-center transform hover:-translate-y-2 transition-transform duration-300 border border-slate-700">
+<div class="text-5xl mb-4">🚀</div>
+<h3 class="text-xl font-bold text-white">Launch a Real Campaign</h3>
+<p class="mt-2 text-slate-400">This is your chance to run a live ad campaign on social media and get real performance data.</p>
+</div>
+<div class="bg-slate-800 p-8 rounded-xl text-center transform hover:-translate-y-2 transition-transform duration-300 border border-slate-700">
+<div class="text-5xl mb-4">💼</div>
+<h3 class="text-xl font-bold text-white">Build Your Portfolio</h3>
+<p class="mt-2 text-slate-400">Finish with a comprehensive campaign book and a polished ad—a killer piece for your resume.</p>
+</div>
+<div class="bg-slate-800 p-8 rounded-xl text-center transform hover:-translate-y-2 transition-transform duration-300 border border-slate-700">
+<div class="text-5xl mb-4">🎤</div>
+<h3 class="text-xl font-bold text-white">Pitch to Industry Judges</h3>
+<p class="mt-2 text-slate-400">Present your final campaign to a panel of real **industry judges** from top agencies and brands.</p>
+</div>
+<div class="bg-slate-800 p-8 rounded-xl text-center transform hover:-translate-y-2 transition-transform duration-300 border border-slate-700">
+<div class="text-5xl mb-4">🤝</div>
+<h3 class="text-xl font-bold text-white">Get Mentored by Pros</h3>
+<p class="mt-2 text-slate-400">Receive guidance and feedback from faculty and industry professionals at critical stages of your project.</p>
+</div>
+</div>
+</section>
+
+<section id="timeline" class="py-20 md:py-24">
+<div class="text-center mb-12">
+<h2 class="text-3xl md:text-4xl font-bold text-white">The 6-Week Gauntlet</h2>
+<p class="mt-3 text-lg text-slate-400 max-w-2xl mx-auto">A high-intensity timeline that takes you from initial idea to final pitch.</p>
+<div class="mt-6">
+<a href="https://docs.google.com/spreadsheets/d/1Q8pEl7ab75PfvszPIYLsy6NkHWMDSrm-WXu9n-qSz6w/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="bg-slate-700 text-slate-300 font-semibold py-2 px-6 rounded-full text-sm hover:bg-slate-600 transition-all inline-block">
+View Detailed Timeline
+</a>
+</div>
+</div>
+<div class="max-w-3xl mx-auto timeline-container mt-8">
+<div class="relative pl-12 pb-10 timeline-item">
+<div class="absolute left-0 top-0 flex items-center justify-center w-12 h-12 bg-slate-700 text-white rounded-full font-bold text-xl ring-8 ring-slate-900">1</div>
+<div class="bg-slate-800 p-6 rounded-xl ml-4">
+<h4 class="text-xl font-bold text-white flex items-center gap-3"><span class="text-2xl">🧠</span> Week 1: Strategy & Research</h4>
+<ul class="mt-2 text-slate-400 list-disc list-inside space-y-1">
+<li>Form your elite team and select a brand.</li>
+<li>Dive into market research and competitor analysis.</li>
+<li>Define your target audience and find a core insight.</li>
+<li>Meet your mentor to validate your strategic direction.</li>
+</ul>
+</div>
+</div>
+<div class="relative pl-12 pb-10 timeline-item">
+<div class="absolute left-0 top-0 flex items-center justify-center w-12 h-12 bg-slate-700 text-white rounded-full font-bold text-xl ring-8 ring-slate-900">2</div>
+<div class="bg-slate-800 p-6 rounded-xl ml-4">
+<h4 class="text-xl font-bold text-white flex items-center gap-3"><span class="text-2xl">💡</span> Week 2: Creative Development</h4>
+<ul class="mt-2 text-slate-400 list-disc list-inside space-y-1">
+<li>Translate your strategy into a professional creative brief.</li>
+<li>Brainstorm big, bold campaign ideas.</li>
+<li>Write the first draft of your ad script.</li>
+<li>Sharpen your concepts in a peer review session.</li>
+</ul>
+</div>
+</div>
+<div class="relative pl-12 pb-10 timeline-item">
+<div class="absolute left-0 top-0 flex items-center justify-center w-12 h-12 bg-slate-700 text-white rounded-full font-bold text-xl ring-8 ring-slate-900">3</div>
+<div class="bg-slate-800 p-6 rounded-xl ml-4">
+<h4 class="text-xl font-bold text-white flex items-center gap-3"><span class="text-2xl">📋</span> Week 3: Production Planning</h4>
+<ul class="mt-2 text-slate-400 list-disc list-inside space-y-1">
+<li>Create detailed storyboards to visualize every shot.</li>
+<li>Develop a professional shot list for the camera crew.</li>
+<li>Map out a precise production schedule.</li>
+<li>Get your plan of attack approved by your mentor.</li>
+</ul>
+</div>
+</div>
+<div class="relative pl-12 pb-10 timeline-item">
+<div class="absolute left-0 top-0 flex items-center justify-center w-12 h-12 bg-slate-700 text-white rounded-full font-bold text-xl ring-8 ring-slate-900">4</div>
+<div class="bg-slate-800 p-6 rounded-xl ml-4">
+<h4 class="text-xl font-bold text-white flex items-center gap-3"><span class="text-2xl">🎬</span> Week 4: Execution & Editing</h4>
+<ul class="mt-2 text-slate-400 list-disc list-inside space-y-1">
+<li>Lights, camera, action! Execute your ad shoot.</li>
+<li>Review all your raw footage.</li>
+<li>Dive into post-production and edit your masterpiece.</li>
+<li>Screen your rough cut for peer feedback.</li>
+</ul>
+</div>
+</div>
+<div class="relative pl-12 pb-10 timeline-item">
+<div class="absolute left-0 top-0 flex items-center justify-center w-12 h-12 bg-blue-600 text-white rounded-full font-bold text-xl ring-8 ring-slate-900">5</div>
+<div class="bg-blue-900/20 p-6 rounded-xl shadow-lg ring-2 ring-blue-500 ml-4">
+<h4 class="text-xl font-bold text-white flex items-center gap-3"><span class="text-2xl">📈</span> Week 5: Go Live!</h4>
+<ul class="mt-2 text-slate-300 list-disc list-inside space-y-1">
+<li>Launch your ad on social media with a live budget.</li>
+<li>Monitor real-time Key Performance Indicators (KPIs).</li>
+<li>Track engagement and collect performance data.</li>
+<li>Analyze the results to prove your campaign works.</li>
+</ul>
+</div>
+</div>
+<div class="relative pl-12 pb-10 timeline-item">
+<div class="absolute left-0 top-0 flex items-center justify-center w-12 h-12 bg-slate-700 text-white rounded-full font-bold text-xl ring-8 ring-slate-900">6</div>
+<div class="bg-slate-800 p-6 rounded-xl ml-4">
+<h4 class="text-xl font-bold text-white flex items-center gap-3"><span class="text-2xl">🏆</span> Week 6: The Final Pitch</h4>
+<ul class="mt-2 text-slate-400 list-disc list-inside space-y-1">
+<li>Synthesize your live campaign data into powerful insights.</li>
+<li>Polish your final ad and campaign book.</li>
+<li>Rehearse your high-stakes presentation.</li>
+<li>Pitch to a panel of <span class="text-orange-400 font-bold">industry judges</span>.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<section id="evaluation" class="py-20 md:py-24">
+<div class="bg-slate-900/50 p-8 md:p-12 rounded-2xl border border-slate-700">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+<div class="order-2 lg:order-1">
+<h2 class="text-3xl font-bold text-white">How You're Judged</h2>
+<p class="mt-4 text-slate-400">Success isn't just about a cool ad. We evaluate the entire campaign, from the strength of your initial strategy to the real-world performance of your live campaign. It’s about the whole package.</p>
+<div class="mt-8 space-y-6">
+<div class="flex items-start gap-4">
+<div class="text-2xl text-sky-400 font-bold">🎯</div>
+<div>
+<h3 class="font-bold text-white">Strategic Thinking & Insight (25%)</h3>
+<p class="text-slate-400 text-sm">How well did you understand the brand and audience? Is your core idea based on a powerful, unique insight?</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="text-2xl text-sky-400 font-bold">💡</div>
+<div>
+<h3 class="font-bold text-white">Creativity & Idea (25%)</h3>
+<p class="text-slate-400 text-sm">Is your campaign concept original, engaging, and relevant? Does it have the power to capture attention?</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="text-2xl text-orange-400 font-bold">🎬</div>
+<div>
+<h3 class="font-bold text-white">Execution of Ad (20%)</h3>
+<p class="text-slate-400 text-sm">How well is your ad produced? We look at storytelling, visual quality, and overall craftsmanship.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="text-2xl text-orange-400 font-bold">📈</div>
+<div>
+<h3 class="font-bold text-white">Live Campaign & Analysis (15%)</h3>
+<p class="text-slate-400 text-sm">How did your live campaign perform? We'll look at your strategy, the results, and how well you analyze the data.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="text-2xl text-slate-400 font-bold">🎤</div>
+<div>
+<h3 class="font-bold text-white">Presentation & Q&A (15%)</h3>
+<p class="text-slate-400 text-sm">How clearly and persuasively can you present your campaign? Can you defend your strategic choices?</p>
+</div>
+</div>
+</div>
+</div>
+<div class="order-1 lg:order-2 chart-container">
+<canvas id="evaluationChart"></canvas>
+</div>
+</div>
+</div>
+</section>
+
+<section id="signup" class="text-center py-20 md:py-32">
+<h2 class="text-4xl md:text-5xl font-bold text-white">Register Your Team</h2>
+<p class="mt-4 text-lg text-slate-400 max-w-xl mx-auto">Form your team of four, sharpen your ideas, and prepare for the ultimate advertising challenge. Registration closes soon.</p>
+<div class="mt-8 max-w-3xl mx-auto bg-slate-800/50 border border-slate-700 rounded-lg p-6 md:p-8">
+<form id="registration-form" class="space-y-8 text-left">
+<div class="space-y-2">
+<label for="team-name" class="font-bold text-slate-300">Team Name</label>
+<input type="text" id="team-name" name="Team Name" required class="form-input">
+</div>
+
+<div class="space-y-4 border-l-2 border-slate-600 pl-4 md:pl-6">
+<h3 class="text-lg font-bold text-white">Brand Preferences</h3>
+<div class="space-y-2">
+<label for="brand-pref-1" class="font-bold text-slate-300">Brand Preference 1</label>
+<input type="text" id="brand-pref-1" name="Brand Preference 1" required class="form-input">
+</div>
+<div class="space-y-2">
+<label for="brand-pref-2" class="font-bold text-slate-300">Brand Preference 2 (Optional)</label>
+<input type="text" id="brand-pref-2" name="Brand Preference 2" class="form-input">
+</div>
+<div class="space-y-2">
+<label for="brand-pref-3" class="font-bold text-slate-300">Brand Preference 3 (Optional)</label>
+<input type="text" id="brand-pref-3" name="Brand Preference 3" class="form-input">
+</div>
+</div>
+
+<!-- Team Member 1 -->
+<div class="space-y-4 border-l-2 border-slate-600 pl-4 md:pl-6">
+<h3 class="text-lg font-bold text-white">Team Member 1 (Leader)</h3>
+<div class="space-y-2">
+<label for="member1-name" class="font-bold text-slate-300">Full Name</label>
+<input type="text" id="member1-name" name="Member 1 Name" required class="form-input">
+</div>
+<div class="space-y-2">
+<label for="member1-id" class="font-bold text-slate-300">Enrolment ID</label>
+<input type="text" id="member1-id" name="Member 1 ID" required class="form-input">
+</div>
+<div class="space-y-2">
+<label for="member1-email" class="font-bold text-slate-300">Email Address</label>
+<input type="email" id="member1-email" name="Member 1 Email" required class="form-input">
+</div>
+</div>
+
+<!-- Team Member 2 -->
+<div class="space-y-4 border-l-2 border-slate-600 pl-4 md:pl-6">
+<h3 class="text-lg font-bold text-white">Team Member 2</h3>
+<div class="space-y-2">
+<label for="member2-name" class="font-bold text-slate-300">Full Name</label>
+<input type="text" id="member2-name" name="Member 2 Name" required class="form-input">
+</div>
+<div class="space-y-2">
+<label for="member2-id" class="font-bold text-slate-300">Enrolment ID</label>
+<input type="text" id="member2-id" name="Member 2 ID" required class="form-input">
+</div>
+<div class="space-y-2">
+<label for="member2-email" class="font-bold text-slate-300">Email Address</label>
+<input type="email" id="member2-email" name="Member 2 Email" required class="form-input">
+</div>
+</div>
+
+<!-- Team Member 3 -->
+<div class="space-y-4 border-l-2 border-slate-600 pl-4 md:pl-6">
+<h3 class="text-lg font-bold text-white">Team Member 3</h3>
+<div class="space-y-2">
+<label for="member3-name" class="font-bold text-slate-300">Full Name</label>
+<input type="text" id="member3-name" name="Member 3 Name" required class="form-input">
+</div>
+<div class="space-y-2">
+<label for="member3-id" class="font-bold text-slate-300">Enrolment ID</label>
+<input type="text" id="member3-id" name="Member 3 ID" required class="form-input">
+</div>
+<div class="space-y-2">
+<label for="member3-email" class="font-bold text-slate-300">Email Address</label>
+<input type="email" id="member3-email" name="Member 3 Email" required class="form-input">
+</div>
+</div>
+
+<!-- Team Member 4 -->
+<div class="space-y-4 border-l-2 border-slate-600 pl-4 md:pl-6">
+<h3 class="text-lg font-bold text-white">Team Member 4</h3>
+<div class="space-y-2">
+<label for="member4-name" class="font-bold text-slate-300">Full Name</label>
+<input type="text" id="member4-name" name="Member 4 Name" required class="form-input">
+</div>
+<div class="space-y-2">
+<label for="member4-id" class="font-bold text-slate-300">Enrolment ID</label>
+<input type="text" id="member4-id" name="Member 4 ID" required class="form-input">
+</div>
+<div class="space-y-2">
+<label for="member4-email" class="font-bold text-slate-300">Email Address</label>
+<input type="email" id="member4-email" name="Member 4 Email" required class="form-input">
+</div>
+</div>
+
+<div class="text-center pt-4">
+<button type="submit" id="submit-button" class="bg-orange-500 text-white font-bold py-3 px-10 rounded-full text-lg hover:bg-orange-400 transition-all transform hover:scale-105 w-full md:w-auto">Submit Registration</button>
+</div>
+</form>
+<div id="form-status" class="mt-6 text-center text-lg"></div>
+</div>
+<p class="mt-6 text-slate-500">Challenge begins July 1, 2025.</p>
+</section>
+
+<section id="submissions" class="py-20 md:py-24">
+<div class="text-center mb-12">
+<h2 class="text-3xl md:text-4xl font-bold text-white">Submissions Portal</h2>
+<p class="mt-3 text-lg text-slate-400 max-w-2xl mx-auto">Upload your team's deliverables here. Please ensure your file names are clear (e.g., "TeamName_CreativeBrief.pdf").</p>
+</div>
+<div class="max-w-3xl mx-auto bg-slate-800/50 border border-slate-700 rounded-lg p-6 md:p-8">
+<form id="submission-form" class="space-y-6 text-left">
+<div class="space-y-2">
+<label for="submission-team-name" class="font-bold text-slate-300">Team Name</label>
+<select id="submission-team-name" name="Team Name" required class="form-select">
+<option value="">Loading teams...</option>
+</select>
+</div>
+<div class="space-y-2">
+<label for="submission-type" class="font-bold text-slate-300">Submission Type</label>
+<select id="submission-type" name="Submission Type" required class="form-select">
+<option value="">Select a deliverable...</option>
+<option value="Brand Analysis">Week 1: Brand Analysis</option>
+<option value="Creative Brief & Script">Week 2: Creative Brief & Script</option>
+<option value="Production Plan">Week 3: Production Plan</option>
+<option value="Near-Final Ad">Week 4: Near-Final Ad</option>
+<option value="Live Campaign Report">Week 5: Live Campaign Report</option>
+<option value="Final Ad">Week 6: Final Ad</option>
+<option value="Final Campaign PPT">Week 6: Final Campaign PPT</option>
+</select>
+</div>
+<div class="space-y-2">
+<label for="file-upload" class="font-bold text-slate-300">File Upload</label>
+<label for="file-upload" class="file-input-label">
+<span id="file-name-display">Click to select a file</span>
+</label>
+<input type="file" id="file-upload" name="file" required class="hidden">
+</div>
+<div class="text-center pt-4">
+<button type="submit" id="upload-button" class="bg-blue-600 text-white font-bold py-3 px-10 rounded-full text-lg hover:bg-blue-500 transition-all transform hover:scale-105 w-full md:w-auto">Upload Deliverable</button>
+</div>
+</form>
+<div id="upload-status" class="mt-6 text-center text-lg"></div>
+</div>
+</section>
+
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+// Chart.js doughnut chart setup
+var wrapLabel = function(str, maxWidth) {
+if (str.length <= maxWidth) return str;
+var words = str.split(' ');
+var lines = [];
+var currentLine = '';
+for (var i = 0; i < words.length; i++) {
+var word = words[i];
+if ((currentLine + ' ' + word).trim().length > maxWidth) {
+lines.push(currentLine.trim());
+currentLine = '';
+}
+currentLine += word + ' ';
+}
+lines.push(currentLine.trim());
+return lines;
+};
+
+var tooltipTitleCallback = function(tooltipItems) {
+var item = tooltipItems[0];
+var label = item.chart.data.labels[item.dataIndex];
+return Array.isArray(label) ? label.join(' ') : label;
+};
+
+var evaluationCtx = document.getElementById('evaluationChart').getContext('2d');
+new Chart(evaluationCtx, {
+type: 'doughnut',
+data: {
+labels: [
+wrapLabel('Strategic Thinking & Insight', 16),
+wrapLabel('Creativity & Idea', 16),
+wrapLabel('Execution of Ad', 16),
+wrapLabel('Live Campaign Performance & Analysis', 16),
+wrapLabel('Presentation & Q&A', 16)
+],
+datasets: [{
+label: 'Weighting',
+data: [25, 25, 20, 15, 15],
+backgroundColor: [
+'#0ea5e9', // Sky 500
+'#38bdf8', // Sky 400
+'#f97316', // Orange 500
+'#fb923c', // Orange 400
+'#475569' // Slate 600
+],
+borderColor: '#020617',
+borderWidth: 6,
+hoverOffset: 15,
+hoverBorderColor: '#1e293b'
+}]
+},
+options: {
+responsive: true,
+maintainAspectRatio: false,
+cutout: '60%',
+plugins: {
+legend: {
+display: false // Hide legend as details are now in text
+},
+tooltip: {
+backgroundColor: '#1e293b',
+titleFont: { size: 14, weight: 'bold', family: 'Inter' },
+bodyFont: { size: 12, family: 'Inter' },
+padding: 12,
+callbacks: {
+title: tooltipTitleCallback,
+label: function(context) {
+var label = ' Weighting';
+if (context.parsed !== null) {
+label = ': ' + context.parsed + '%';
+}
+var fullLabel = context.chart.data.labels[context.dataIndex];
+if(Array.isArray(fullLabel)){
+fullLabel = fullLabel.join(' ');
+}
+return fullLabel + label;
+}
+}
+}
+}
+}
+});
+
+// --- Registration Form Logic ---
+var registrationForm = document.getElementById('registration-form');
+var registrationStatusDiv = document.getElementById('form-status');
+var registrationSubmitButton = document.getElementById('submit-button');
+var registrationWebAppUrl = 'https://script.google.com/macros/s/AKfycbwMpipKuxsjxA183XMmVanzpgmkD0vaw0tbsdoMlA5inr32pQwPGK80QrNuaNfFqYvVKQ/exec';
+
+registrationForm.addEventListener('submit', function(e) {
+e.preventDefault();
+registrationSubmitButton.disabled = true;
+registrationSubmitButton.textContent = 'Submitting...';
+registrationStatusDiv.textContent = '';
+var formData = new FormData(registrationForm);
+
+fetch(registrationWebAppUrl, { method: 'POST', body: formData})
+.then(function(response) { return response.json(); })
+.then(function(data) {
+if (data.result === 'success') {
+registrationStatusDiv.textContent = 'Thank you! Your team has been registered successfully.';
+registrationStatusDiv.style.color = '#4ade80';
+registrationForm.reset();
+// Refresh team list after successful registration
+fetchTeamNames();
+} else { throw new Error(data.message || 'Unknown error'); }
+})
+.catch(function(error) {
+registrationStatusDiv.textContent = 'An error occurred. Please try again.';
+registrationStatusDiv.style.color = '#f87171';
+console.error('Error:', error);
+})
+.finally(function() {
+registrationSubmitButton.disabled = false;
+registrationSubmitButton.textContent = 'Submit Registration';
+});
+});
+
+// --- Submission Portal Logic ---
+var submissionForm = document.getElementById('submission-form');
+var uploadStatusDiv = document.getElementById('upload-status');
+var uploadButton = document.getElementById('upload-button');
+var fileInput = document.getElementById('file-upload');
+var fileNameDisplay = document.getElementById('file-name-display');
+var teamNameSelect = document.getElementById('submission-team-name');
+
+var teamNameWebAppUrl = 'https://script.google.com/macros/s/AKfycbwmzEcXi8e94Ci-xlJKwI_9-hT9uJ_aLe6VP-pGKuYhORjow4PG2Rcrg71TGfKdBjw1eg/exec';
+var fileUploadWebAppUrl = 'https://script.google.com/macros/s/AKfycbwMDXtiEpbvJK9qervtsQHnnqyMuc44KjPBl7cFUJb90aIZ4QUmu6OwIhz9ZcENE4UT1Q/exec';
+
+// Function to fetch team names and populate dropdown
+function fetchTeamNames() {
+if (teamNameWebAppUrl === 'YOUR_TEAM_NAME_GETTER_SCRIPT_URL_HERE') return;
+
+fetch(teamNameWebAppUrl)
+.then(function(response) { return response.json(); })
+.then(function(data) {
+if (data.result === 'success') {
+teamNameSelect.innerHTML = '<option value="">Select your team...</option>'; // Clear existing options
+data.teams.forEach(function(team) {
+var option = document.createElement('option');
+option.value = team;
+option.textContent = team;
+teamNameSelect.appendChild(option);
+});
+} else { throw new Error(data.message); }
+})
+.catch(function(error) {
+console.error('Error fetching team names:', error);
+teamNameSelect.innerHTML = '<option value="">Could not load teams</option>';
+});
+}
+
+// Initial fetch of team names
+fetchTeamNames();
+
+fileInput.addEventListener('change', function() {
+fileNameDisplay.textContent = fileInput.files.length > 0 ? fileInput.files[0].name : 'Click to select a file';
+});
+
+submissionForm.addEventListener('submit', function(e) {
+e.preventDefault();
+
+if (fileUploadWebAppUrl === 'YOUR_FILE_UPLOAD_APPS_SCRIPT_URL_HERE') {
+uploadStatusDiv.textContent = 'Submission portal not connected.';
+uploadStatusDiv.style.color = '#f87171';
+return;
+}
+
+uploadButton.disabled = true;
+uploadButton.textContent = 'Uploading...';
+uploadStatusDiv.textContent = 'Please wait, your file is being uploaded.';
+uploadStatusDiv.style.color = '#e2e8f0';
+
+var file = fileInput.files[0];
+var reader = new FileReader();
+reader.readAsDataURL(file);
+reader.onload = function(e) {
+var data = e.target.result.split(',')[1];
+var payload = {
+filename: file.name,
+mimeType: file.type,
+data: data,
+teamName: document.getElementById('submission-team-name').value,
+submissionType: document.getElementById('submission-type').value
+};
+
+fetch(fileUploadWebAppUrl, { method: 'POST', body: JSON.stringify(payload) })
+.then(function(response) { return response.json(); })
+.then(function(data) {
+if (data.result === 'success') {
+uploadStatusDiv.textContent = 'File uploaded successfully!';
+uploadStatusDiv.style.color = '#4ade80';
+submissionForm.reset();
+fileNameDisplay.textContent = 'Click to select a file';
+} else { throw new Error(data.message); }
+})
+.catch(function(error) {
+uploadStatusDiv.textContent = 'Upload failed. Please try again.';
+uploadStatusDiv.style.color = '#f87171';
+console.error('Error:', error);
+})
+.finally(function() {
+uploadButton.disabled = false;
+uploadButton.textContent = 'Upload Deliverable';
+});
+};
+});
+});
+</script>
+</body>
+</html>
